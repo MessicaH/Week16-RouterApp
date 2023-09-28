@@ -102,17 +102,15 @@ function Posts({posts}) {
   return (
     <div className='container-fluid'>
     <h2>Posts <Icon.JournalText/></h2>
-    <ul>
       {posts.map((post,index) => {
         return (
-          <li className='postsList' key={index}>
+          <Button className='postsList' key={index} variant=''>
             <Link to={`${match.url}/${post.id}`}>
               {post.title}
             </Link>
-          </li>
+          </Button>
         );
       })}
-    </ul>
     <Switch>
       <Route 
         path={`${match.path}/:postId`}
@@ -124,7 +122,7 @@ function Posts({posts}) {
         )}
       />
       <Route path={match.path}>
-        <h3>Select a post</h3>
+        <p>Select a post to read and reminisce</p>
       </Route>
     </Switch>
     </div>
@@ -133,12 +131,25 @@ function Posts({posts}) {
 
 function Post(props) {
   const {data} = props;
-  return (
-    <div className='container card postCard'>
-      <h2 className='postTitle'>{data.title}</h2>
-      <h5 className='postDate'>Posted on {data.date}</h5>
-      <p className='postContent'>{data.content}</p>
+  return data == undefined ? 
+    <div className='container card errorMessage'>
+      <h3>404 - Not Found <Icon.SearchHeart/></h3>
+      <p>We couldn't find that information for you because it either:</p>
+        <ul>
+          <li>Does not exist </li>
+          <li>Has moved and its URL address changed, or</li>
+          <li><span className='liarError'>Someone lied to you</span></li>
+        </ul>
+      <p>Seek vengeance and/or check the URL again to find your information.</p>
     </div>
+    : (
+    <Card className='container postCard'>
+      <Card.Header className='postTitle'>{data.title}</Card.Header>
+      <Card.Body>
+        <Card.Subtitle className='postDate'>Posted on {data.date}</Card.Subtitle>
+        <Card.Text className='postContent'>{data.content}</Card.Text>
+      </Card.Body>
+    </Card>
   )
 }
 

@@ -1,11 +1,12 @@
 a {
   color: aquamarine;
 }
-
+ /*
 li {
   list-style: none;
   text-align: center;
 }
+*/
 
 /*
 These are for global attributes that will not make background colors render weird.
@@ -37,6 +38,7 @@ These are for global attributes that will not make background colors render weir
 
 .friendList, .postsList {
   text-align: left;
+  margin-bottom: 1em;
 }
 
 /*
@@ -52,24 +54,38 @@ This would likely put into a different postCard.js and .css Components area, but
 
 .postTitle {
   font-weight: 600;
+  font-size: 24px;
   background-color: white;
   color: #282c34;
 }
 
 .postDate {
-  font-style: italic;
   background-color: white;
   color:#282c34;
-  font-size: small;
+  font-size: smaller;
+  letter-spacing: .075em;
+  font-weight: 400;
   text-indent: 0.5em;
+  padding-bottom: 0.5em;
+  margin-bottom: 3em;
 }
 
 .postContent {
   background-color: white;
   color:#282c34;
   box-shadow: 3px 2px 7px gray inset;
-  padding: .5em;
-  font-family:'Courier New', Courier, monospace;
-  text-shadow: 3px 2px 5px gray;
+  padding: .75em;
   border-radius: 0.5em;
+}
+
+/*
+*/
+
+.errorMessage {
+  padding: 1em;
+  align-items: center;
+}
+
+.liarError {
+  color: darkred;
 }
